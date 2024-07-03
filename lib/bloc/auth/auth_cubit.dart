@@ -9,11 +9,23 @@ class AuthCubit extends Cubit<AuthState> {
       BuildContext context, String name, String email, String password) async {
     emit(AuthState());
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      final credential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      await FirebaseAuth.instance.currentUser!.updateDisplayName(name);
+      await credential.user!.updateDisplayName(name);
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(credential.user!.uid)
+          .set(
+        {
+          "name": name,
+          "email": credential.user!.email,
+          "uid": credential.user!.uid,
+        },
+        SetOptions(merge: true),
+      );
       Navigator.pushNamed(context, "/homePage");
     } on FirebaseAuthException catch (e) {
       emit(RegisterError(e.message));
