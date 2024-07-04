@@ -1,4 +1,5 @@
 import 'package:chat_app/bloc/user%20list/user_list_state.dart';
+import 'package:chat_app/pages/chat_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,7 +18,7 @@ class _HomePageState extends State<HomePage> {
         automaticallyImplyLeading: false,
         title: Text(
           "User list",
-          style: Theme.of(context).textTheme.headlineSmall,
+          style: Theme.of(context).textTheme.headlineMedium,
         ),
       ),
       body: BlocBuilder<UserListCubit, UserListState>(
@@ -43,15 +44,25 @@ class _HomePageState extends State<HomePage> {
               return ListView.builder(
                 itemCount: state.userList.length,
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(state.userList[index]["name"]),
-                    trailing: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.arrow_back_ios_new),
-                    ),
-                    titleTextStyle: Theme.of(context).textTheme.titleMedium,
-                    subtitle: Text(
-                      state.userList[index]["uid"],
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ChatPage(
+                            receiverUserName: state.userList[index]["name"],
+                            receiverUserUid: state.userList[index]["uid"],
+                          ),
+                        ),
+                      );
+                    },
+                    child: ListTile(
+                      title: Text(state.userList[index]["name"]),
+                      trailing: const Icon(Icons.arrow_back_ios_new),
+                      titleTextStyle: Theme.of(context).textTheme.titleMedium,
+                      subtitle: Text(
+                        state.userList[index]["uid"],
+                      ),
                     ),
                   );
                 },

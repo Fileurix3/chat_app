@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 const TextTheme textTheme = TextTheme(
   headlineLarge: TextStyle(fontSize: 40),
+  headlineMedium: TextStyle(fontSize: 28),
   headlineSmall: TextStyle(fontSize: 28),
   titleMedium: TextStyle(fontSize: 24),
   titleSmall: TextStyle(fontSize: 18),

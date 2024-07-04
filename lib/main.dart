@@ -1,4 +1,5 @@
 import 'package:chat_app/bloc/auth/auth_state.dart';
+import 'package:chat_app/bloc/chat/chat_state.dart';
 import 'package:chat_app/bloc/user%20list/user_list_state.dart';
 import 'package:chat_app/firebase_options.dart';
 import 'package:chat_app/pages/home_page.dart';
@@ -19,6 +20,7 @@ void main() async {
     providers: [
       BlocProvider<AuthCubit>(create: (_) => AuthCubit()),
       BlocProvider<UserListCubit>(create: (_) => UserListCubit()),
+      BlocProvider<ChatCubit>(create: (_) => ChatCubit()),
     ],
     child: const MyApp(),
   ));
