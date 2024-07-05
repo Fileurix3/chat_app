@@ -16,10 +16,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(
-          "User list",
-          style: Theme.of(context).textTheme.headlineMedium,
-        ),
+        title: const Text("User list"),
       ),
       body: BlocBuilder<UserListCubit, UserListState>(
         builder: (context, state) {

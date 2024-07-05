@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: lightTheme,
+      theme: darkTheme,
       home: FirebaseAuth.instance.currentUser!.uid.isEmpty
           ? const RegisterPage()
           : const HomePage(),

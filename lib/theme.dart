@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 
 const TextTheme textTheme = TextTheme(
   headlineLarge: TextStyle(fontSize: 40),
-  headlineMedium: TextStyle(fontSize: 28),
   headlineSmall: TextStyle(fontSize: 28),
   titleMedium: TextStyle(fontSize: 24),
   titleSmall: TextStyle(fontSize: 18),
+  labelLarge: TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w400,
+    color: Colors.white,
+  ),
   labelMedium: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
 );
 
@@ -33,6 +37,7 @@ ButtonStyle textButtonStyle(Color mainColor) => TextButton.styleFrom(
 InputDecorationTheme inputDecoration(Color? mainColor) => InputDecorationTheme(
       prefixIconColor: mainColor,
       suffixIconColor: mainColor,
+      hintStyle: const TextStyle(fontSize: 20),
       labelStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
       enabledBorder: UnderlineInputBorder(
         borderSide: BorderSide(color: mainColor!),
@@ -46,14 +51,15 @@ InputDecorationTheme inputDecoration(Color? mainColor) => InputDecorationTheme(
 
 ThemeData lightTheme = ThemeData(
   appBarTheme: AppBarTheme(
-    color: Colors.grey[100],
+    color: Colors.grey[300],
     centerTitle: true,
+    titleTextStyle: const TextStyle(fontSize: 28, color: Colors.black),
   ),
   colorScheme: ColorScheme.fromSwatch(
     primarySwatch: Colors.blue,
     accentColor: Colors.blueAccent,
-    cardColor: Colors.grey[300],
-    backgroundColor: Colors.grey[100],
+    cardColor: Colors.grey[50],
+    backgroundColor: Colors.grey[300],
     brightness: Brightness.light,
   ),
   inputDecorationTheme: inputDecoration(Colors.black),
@@ -70,6 +76,7 @@ ThemeData darkTheme = ThemeData(
   appBarTheme: AppBarTheme(
     color: Colors.grey[900],
     centerTitle: true,
+    titleTextStyle: const TextStyle(fontSize: 28, color: Colors.white),
   ),
   colorScheme: ColorScheme.fromSwatch(
     primarySwatch: Colors.indigo,
