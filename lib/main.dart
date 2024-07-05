@@ -19,6 +19,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()),
@@ -33,15 +34,17 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, required sharedPreferences});
+  final SharedPreferences sharedPreferences;
+
+  const MyApp({super.key, required this.sharedPreferences});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeCubit, ThemeState>(
       builder: (context, state) {
         return MaterialApp(
-          theme: state.darkTheme == false ? lightTheme : darkTheme,
-          home: FirebaseAuth.instance.currentUser!.uid.isEmpty
+          theme: state.darkTheme ? darkTheme : lightTheme,
+          home: FirebaseAuth.instance.currentUser == null
               ? const RegisterPage()
               : const HomePage(),
           routes: {

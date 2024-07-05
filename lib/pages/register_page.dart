@@ -46,10 +46,10 @@ class _RegisterPageState extends State<RegisterPage> {
                                 size: 28,
                               ),
                               labelText: "display name",
-                              counter: null,
+                              counterText: "",
                             ),
                             style: Theme.of(context).textTheme.labelMedium,
-                            maxLength: 20,
+                            maxLength: 30,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return "Field must not be empty";

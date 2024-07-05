@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 const TextTheme textTheme = TextTheme(
-  headlineLarge: TextStyle(fontSize: 40),
+  headlineLarge: TextStyle(
+    fontSize: 40,
+  ),
   headlineSmall: TextStyle(fontSize: 28),
   titleLarge: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
-  titleMedium: TextStyle(fontSize: 24),
   titleSmall: TextStyle(fontSize: 18),
   labelLarge: TextStyle(
     fontSize: 18,
@@ -50,11 +51,20 @@ InputDecorationTheme inputDecoration(Color? mainColor) => InputDecorationTheme(
       ),
     );
 
+ListTileThemeData listTileTheme(Color titleColor, Color? subtitleColor) =>
+    ListTileThemeData(
+      titleTextStyle: TextStyle(fontSize: 24, color: titleColor),
+      subtitleTextStyle: TextStyle(fontSize: 14, color: subtitleColor),
+    );
+
 ThemeData lightTheme = ThemeData(
   appBarTheme: AppBarTheme(
     color: Colors.grey[300],
     centerTitle: true,
-    titleTextStyle: const TextStyle(fontSize: 28, color: Colors.black),
+    titleTextStyle: const TextStyle(
+      fontSize: 28,
+      color: Colors.black,
+    ),
   ),
   colorScheme: ColorScheme.fromSwatch(
     primarySwatch: Colors.blue,
@@ -71,13 +81,17 @@ ThemeData lightTheme = ThemeData(
     style: textButtonStyle(Colors.blue),
   ),
   textTheme: textTheme,
+  listTileTheme: listTileTheme(Colors.black, Colors.grey[800]),
 );
 
 ThemeData darkTheme = ThemeData(
   appBarTheme: AppBarTheme(
     color: Colors.grey[900],
     centerTitle: true,
-    titleTextStyle: const TextStyle(fontSize: 28, color: Colors.white),
+    titleTextStyle: const TextStyle(
+      fontSize: 28,
+      color: Colors.white,
+    ),
   ),
   colorScheme: ColorScheme.fromSwatch(
     primarySwatch: Colors.indigo,
@@ -94,4 +108,5 @@ ThemeData darkTheme = ThemeData(
     style: textButtonStyle(Colors.indigo),
   ),
   textTheme: textTheme,
+  listTileTheme: listTileTheme(Colors.white, Colors.grey[400]),
 );

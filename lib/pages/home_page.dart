@@ -1,3 +1,4 @@
+import 'package:chat_app/bloc/theme/theme_state.dart';
 import 'package:chat_app/bloc/user%20list/user_list_state.dart';
 import 'package:chat_app/pages/chat_page.dart';
 import 'package:chat_app/widgets/custom_drawer.dart';
@@ -67,7 +68,6 @@ class _HomePageState extends State<HomePage> {
                     child: ListTile(
                       title: Text(
                         state.userList[index]["name"],
-                        style: Theme.of(context).textTheme.titleMedium,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                       ),
