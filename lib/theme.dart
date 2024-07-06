@@ -60,6 +60,7 @@ ListTileThemeData listTileTheme(Color titleColor, Color? subtitleColor) =>
 ThemeData lightTheme = ThemeData(
   appBarTheme: AppBarTheme(
     color: Colors.grey[300],
+    scrolledUnderElevation: 0,
     centerTitle: true,
     titleTextStyle: const TextStyle(
       fontSize: 28,
@@ -85,10 +86,11 @@ ThemeData lightTheme = ThemeData(
 );
 
 ThemeData darkTheme = ThemeData(
-  appBarTheme: AppBarTheme(
-    color: Colors.grey[900],
+  appBarTheme: const AppBarTheme(
+    color: Color.fromARGB(255, 30, 30, 30),
+    scrolledUnderElevation: 0,
     centerTitle: true,
-    titleTextStyle: const TextStyle(
+    titleTextStyle: TextStyle(
       fontSize: 28,
       color: Colors.white,
     ),
@@ -97,7 +99,7 @@ ThemeData darkTheme = ThemeData(
     primarySwatch: Colors.indigo,
     accentColor: Colors.indigoAccent,
     cardColor: Colors.grey[850],
-    backgroundColor: Colors.grey[900],
+    backgroundColor: const Color.fromARGB(255, 30, 30, 30),
     brightness: Brightness.dark,
   ),
   inputDecorationTheme: inputDecoration(Colors.grey[350]),

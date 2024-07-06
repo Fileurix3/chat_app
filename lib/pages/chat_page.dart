@@ -2,7 +2,6 @@ import 'package:chat_app/bloc/chat/chat_state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChatPage extends StatefulWidget {
@@ -19,7 +18,26 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
+  final ScrollController _scrollController = ScrollController();
   TextEditingController messageController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollToBottom();
+    });
+  }
+
+  void _scrollToBottom() {
+    if (_scrollController.hasClients) {
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 1000),
+        curve: Curves.easeOutQuint,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +59,11 @@ class _ChatPageState extends State<ChatPage> {
                 } else if (snapshot.hasError) {
                   return Center(child: Text(snapshot.hasError.toString()));
                 } else {
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    _scrollToBottom();
+                  });
                   return ListView.builder(
+                    controller: _scrollController,
                     itemCount: snapshot.data!.docs.length,
                     itemBuilder: (context, index) {
                       final DocumentSnapshot doc = snapshot.data!.docs[index];
@@ -89,7 +111,15 @@ class _ChatPageState extends State<ChatPage> {
             ),
           ),
           Container(
-            color: Theme.of(context).cardColor,
+            decoration: BoxDecoration(
+              color: Theme.of(context).scaffoldBackgroundColor,
+              border: Border(
+                top: BorderSide(
+                  width: 1,
+                  color: Colors.grey[700]!,
+                ),
+              ),
+            ),
             child: Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 10,
@@ -103,6 +133,8 @@ class _ChatPageState extends State<ChatPage> {
                       controller: messageController,
                       decoration: const InputDecoration(
                         hintText: 'Enter your message...',
+                        enabledBorder: InputBorder.none,
+                        focusedBorder: InputBorder.none,
                       ),
                       style: Theme.of(context).textTheme.labelMedium,
                       minLines: 1,
@@ -118,6 +150,7 @@ class _ChatPageState extends State<ChatPage> {
                               messageController.text,
                             );
                         messageController.clear();
+                        _scrollToBottom();
                       }
                     },
                   ),
