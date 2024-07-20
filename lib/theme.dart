@@ -7,11 +7,6 @@ const TextTheme textTheme = TextTheme(
   headlineSmall: TextStyle(fontSize: 28),
   titleLarge: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
   titleSmall: TextStyle(fontSize: 18),
-  labelLarge: TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.w400,
-    color: Colors.white,
-  ),
   labelMedium: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
 );
 
@@ -60,7 +55,6 @@ ListTileThemeData listTileTheme(Color titleColor, Color? subtitleColor) =>
 ThemeData lightTheme = ThemeData(
   appBarTheme: AppBarTheme(
     color: Colors.grey[300],
-    scrolledUnderElevation: 0,
     centerTitle: true,
     titleTextStyle: const TextStyle(
       fontSize: 28,
@@ -88,7 +82,6 @@ ThemeData lightTheme = ThemeData(
 ThemeData darkTheme = ThemeData(
   appBarTheme: const AppBarTheme(
     color: Color.fromARGB(255, 30, 30, 30),
-    scrolledUnderElevation: 0,
     centerTitle: true,
     titleTextStyle: TextStyle(
       fontSize: 28,

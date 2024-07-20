@@ -62,6 +62,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           const SizedBox(height: 14),
                           TextFormField(
                             controller: emailController,
+                            keyboardType: TextInputType.emailAddress,
                             decoration: const InputDecoration(
                               prefixIcon: Icon(
                                 Icons.email,

@@ -1,7 +1,7 @@
 import 'package:chat_app/bloc/auth/auth_state.dart';
 import 'package:chat_app/bloc/chat/chat_state.dart';
 import 'package:chat_app/bloc/theme/theme_state.dart';
-import 'package:chat_app/bloc/user%20list/user_list_state.dart';
+import 'package:chat_app/bloc/contacts/contacts_state.dart';
 import 'package:chat_app/firebase_options.dart';
 import 'package:chat_app/pages/home_page.dart';
 import 'package:chat_app/pages/login_page.dart';
@@ -24,7 +24,7 @@ void main() async {
     providers: [
       BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()),
       BlocProvider<AuthCubit>(create: (_) => AuthCubit()),
-      BlocProvider<UserListCubit>(create: (_) => UserListCubit()),
+      BlocProvider<ContactsCubit>(create: (_) => ContactsCubit()),
       BlocProvider<ChatCubit>(create: (_) => ChatCubit()),
     ],
     child: MyApp(

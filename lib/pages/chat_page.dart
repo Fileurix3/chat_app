@@ -69,6 +69,7 @@ class _ChatPageState extends State<ChatPage> {
                       final DocumentSnapshot doc = snapshot.data!.docs[index];
                       Map<String, dynamic> data =
                           doc.data() as Map<String, dynamic>;
+
                       Alignment alignment = (data["senderUid"] ==
                               FirebaseAuth.instance.currentUser!.uid)
                           ? Alignment.centerRight
@@ -84,20 +85,35 @@ class _ChatPageState extends State<ChatPage> {
                             maxWidth: MediaQuery.of(context).size.width / 1.4,
                             minWidth: 0,
                           ),
-                          margin: const EdgeInsets.only(bottom: 10),
+                          margin: const EdgeInsets.only(bottom: 14),
                           padding: const EdgeInsets.symmetric(
                             horizontal: 12,
                             vertical: 8,
                           ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(14),
-                            color: Theme.of(context).colorScheme.primary,
+                            color: FirebaseAuth.instance.currentUser!.uid ==
+                                    data["senderUid"]
+                                ? Theme.of(context).colorScheme.primary
+                                : Theme.of(context).cardColor,
                           ),
                           child: Column(
                             children: [
                               Text(
                                 data["message"],
-                                style: Theme.of(context).textTheme.labelLarge,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color:
+                                      FirebaseAuth.instance.currentUser!.uid ==
+                                              data["senderUid"]
+                                          ? Colors.white
+                                          : Theme.of(context)
+                                                      .colorScheme
+                                                      .brightness ==
+                                                  Brightness.dark
+                                              ? Colors.white
+                                              : Colors.black,
+                                ),
                                 overflow: TextOverflow.clip,
                               ),
                             ],
